@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td {
+    border: 1px solid #000;
+    padding: 20px;
+  }
+  
+  /* Первая ячейка */
+  .cell1 {
+    background-image: url("../resource/background.jpg");
+    background-size: cover;
+    background-origin: content-box;
+    column-count: 3;
+    column-gap: 20px;
+    column-rule: 2px solid blue;
+    text-shadow: 2px 2px 4px #000, -2px -2px 4px #555;
+  }
+  .cell1 h3 {
+    font-size: 250%;
+    font-family: "Times New Roman", serif;
+    color: red;
+  }
+  .multicolumn p {
+    margin: 0 0 10px;
+  }
+  .para1 {
+    font-family: Verdana;
+    font-size: 16px;
+    color: #333;
+  }
+  .para2 {
+    font-family: "Courier New", monospace;
+    font-size: 18px;
+    color: #555;
+  }
+  .para3 {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: #777;
+  }
+  
+  /* Вторая ячейка */
+  .cell2 {
+    position: relative;
+    height: 300px;
+  }
+  .image-stack {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+
+  /* #Каким образом можно наложить одно изображение поверх другого с использованием CSS? */
+
+  .image-stack .stacked {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+  }
+
+  #s1 {
+    width: 400px;
+    height: 300px;
+  }
+
+  #s2 {
+    width: 200px;
+    height: 400px;
+  }
+
+  #s3 {
+    width: 700px;
+    height: 400px;
+    opacity: 0.5;
+  }
+
+
+  
+  /* Анимация */
+  .animated-object {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    position: relative;
+    margin-top: 220px;
+    animation: moveAndRotate 5s linear 0s 3;
+  }
+  @keyframes moveAndRotate {
+    0% {
+      transform: translateX(0) rotate(0deg);
+      background-color: blue;
+      opacity: 1;
+    }
+    50% {
+      transform: translateX(50%) rotate(180deg);
+      background-color: green;
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateX(100%) rotate(360deg);
+      background-color: red;
+      opacity: 1;
+    }
+  }
+  
