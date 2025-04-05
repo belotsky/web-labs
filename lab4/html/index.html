@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опрос любителей классической музыки</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Опрос любителей классической музыки</h1>
+        </header>
+
+        <main class="content">
+            <article>
+                <form id="surveyForm" onsubmit="return submitForm(event)">
+                    <div class="form-group">
+                        <label for="fullName">Ваше полное имя:</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthDate">Дата рождения:</label>
+                        <input type="date" id="birthDate" name="birthDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startedListening">Когда вы начали слушать классическую музыку:</label>
+                        <input type="month" id="startedListening" name="startedListening" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Любимые композиторы:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="bach" name="composers" value="Бах">
+                            <label for="bach">И.С. Бах</label>
+
+                            <input type="checkbox" id="mozart" name="composers" value="Моцарт">
+                            <label for="mozart">В.А. Моцарт</label>
+
+                            <input type="checkbox" id="beethoven" name="composers" value="Бетховен">
+                            <label for="beethoven">Л.В. Бетховен</label>
+
+                            <input type="checkbox" id="tchaikovsky" name="composers" value="Чайковский">
+                            <label for="tchaikovsky">П.И. Чайковский</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Как часто вы слушаете классическую музыку:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="daily" name="frequency" value="daily" required>
+                            <label for="daily">Ежедневно</label>
+
+                            <input type="radio" id="weekly" name="frequency" value="weekly">
+                            <label for="weekly">Еженедельно</label>
+
+                            <input type="radio" id="monthly" name="frequency" value="monthly">
+                            <label for="monthly">Ежемесячно</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredEra">Предпочитаемая эпоха:</label>
+                        <select id="preferredEra" name="preferredEra" required>
+                            <option value="">Выберите эпоху</option>
+                            <optgroup label="Предыдущие участники выбрали:">
+                                <option value="baroque">Барокко</option>
+                                <option value="classical">Классицизм</option>
+                                <option value="romantic">Романтизм</option>
+                                <option value="modern">Современная классика</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <button type="submit">Отправить</button>
+                </form>
+            </article>
+
+            <nav>
+                <h2>Навигация</h2>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <aside>
+                <h2>Дополнительно</h2>
+                <p>Интересные факты о классической музыке</p>
+            </aside>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Опрос любителей классической музыки</p>
+        </footer>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

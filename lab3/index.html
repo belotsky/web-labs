@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки текста</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Настройки текста</h1>
+    <textarea id="text1" placeholder="Введите текст 1"></textarea>
+    <textarea id="text2" placeholder="Введите текст 2"></textarea>
+    
+    <label for="fontSize">размер шрифта:</label>
+    <select id="fontSize">
+        <option value="small">маленький</option>
+        <option value="medium">средненький</option>
+        <option value="large">giant</option>
+    </select>
+    
+    <button onclick="setColor('red')" style="color: red;">красный</button>
+    <button onclick="setColor('blue')" style="color: blue;">синий</button>
+    <button onclick="setColor('green')" style="color: green;">зеленый</button>
+    
+    <button onclick="openTextWindow()">Показать текст</button>
+    <button onclick="openCombinedWindow()">Показать текст с параметрами</button>
+    
+    <script src="script.js"></script>
+</body>
+</html>
