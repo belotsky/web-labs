@@ -2,22 +2,53 @@ class StudentManager {
     constructor() {
         this.students = [];
         this.nextId = 1;
+        this.history = [];
         this.loadFromStorage();
         this.initializeEventListeners();
         this.updateTable();
         this.updateIdSelect();
+        this.updateHistory();
     }
 
     loadFromStorage() {
         const storedData = localStorage.getItem('students');
+        const storedHistory = localStorage.getItem('history');
         if (storedData) {
             this.students = JSON.parse(storedData);
             this.nextId = Math.max(...this.students.map(s => s.id), 0) + 1;
+        }
+        if (storedHistory) {
+            this.history = JSON.parse(storedHistory);
         }
     }
 
     saveToStorage() {
         localStorage.setItem('students', JSON.stringify(this.students));
+        localStorage.setItem('history', JSON.stringify(this.history));
+    }
+
+    addToHistory(action, studentId, details = '') {
+        const timestamp = new Date().toLocaleString();
+        const historyItem = {
+            timestamp,
+            action,
+            studentId,
+            details
+        };
+        this.history.unshift(historyItem);
+        this.saveToStorage();
+        this.updateHistory();
+    }
+
+    updateHistory() {
+        const historyList = document.getElementById('historyList');
+        historyList.innerHTML = '';
+        this.history.forEach(item => {
+            const historyItem = document.createElement('div');
+            historyItem.className = 'history-item';
+            historyItem.textContent = `[${item.timestamp}] ${item.action} ${item.details}`;
+            historyList.appendChild(historyItem);
+        });
     }
 
     initializeEventListeners() {
@@ -40,6 +71,7 @@ class StudentManager {
         };
 
         this.students.push(student);
+        this.addToHistory('Добавлена новая запись', student.id, `ФИО: ${student.fullName}`);
         this.saveToStorage();
         this.updateTable();
         this.updateIdSelect();
@@ -53,11 +85,15 @@ class StudentManager {
     deleteStudent() {
         const id = document.getElementById('studentId').value;
         if (id) {
-            this.students = this.students.filter(student => student.id !== parseInt(id));
-            this.saveToStorage();
-            this.updateTable();
-            this.updateIdSelect();
-            this.clearForm();
+            const student = this.students.find(s => s.id === parseInt(id));
+            if (student) {
+                this.addToHistory('Удалена запись', student.id, `ФИО: ${student.fullName}`);
+                this.students = this.students.filter(student => student.id !== parseInt(id));
+                this.saveToStorage();
+                this.updateTable();
+                this.updateIdSelect();
+                this.clearForm();
+            }
         }
     }
 
@@ -70,6 +106,7 @@ class StudentManager {
             const student = this.students.find(s => s.id === parseInt(selectedId));
             if (student) {
                 student.additionalProperties[propertyName] = propertyValue;
+                this.addToHistory('Добавлено свойство', student.id, `${propertyName}: ${propertyValue}`);
                 this.saveToStorage();
                 this.updateTable();
             }
@@ -83,7 +120,9 @@ class StudentManager {
         if (propertyName && selectedId) {
             const student = this.students.find(s => s.id === parseInt(selectedId));
             if (student && student.additionalProperties[propertyName]) {
+                const propertyValue = student.additionalProperties[propertyName];
                 delete student.additionalProperties[propertyName];
+                this.addToHistory('Удалено свойство', student.id, `${propertyName}: ${propertyValue}`);
                 this.saveToStorage();
                 this.updateTable();
             }
